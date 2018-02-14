@@ -1,0 +1,65 @@
+body {
+  background: radial-gradient(yellow, orange);
+}
+
+#jogo-wrapper {
+  max-width: 320px;
+  margin: 0 auto;
+  padding-top: 10vh;
+}
+
+h5 {
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+#jogo {
+  font-size: 3em;
+}
+
+﻿.botao {
+
+}
+
+.botao span {
+  font-size: 12px !important;
+  display: block;
+  text-align: center;
+  font-weight: 400;
+}
+
+#placar {
+  padding: 20px;
+  margin: 10px 0;
+  background: rgba(0, 0, 0, 0.1);
+  line-height: 2em;
+}
+
+#placar-atual {
+  padding: 20px;
+  margin: 10px 0;
+  background: rgba(0, 0, 0, 0.1);
+  line-height: 2em;
+  text-align:  center;
+  font-size: 1.4em;
+}
+
+#regras {
+  padding: 0;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+ul {
+  list-style-type: none;
+  list-style-position: inside;
+  padding: 0;
+  margin: 0;
+}
+
+ul > li {
+  padding: 5px 0;
+  font-size: 0.8em;
+}

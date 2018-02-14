@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="scripts/rps.js"></script>
+
+    <link href="css/jogo.css" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+</head>
+<body>
+    <div id="jogo-wrapper">
+    <div id="jogo">
+      <h5>Escolha sua arma!</h5>
+        <div class="botao fa fa-hand-rock" data-indice="0"><span>Pedra</span></div>
+        <div class="botao fa fa-hand-paper" data-indice="1"><span>Papel</span></div>
+        <div class="botao fa fa-hand-scissors" data-indice="2"><span>Tesoura</span></div>
+        <div class="botao fa fa-hand-lizard" data-indice="3"><span>Lagarto</span></div>
+        <div class="botao fa fa-hand-spock" data-indice="4"><span>Spock</span></div>
+    </div>
+
+    <div id="placar-atual">
+      <strong>Player</strong> <span id="score-player">0</span> X <span id="score-pc">0</span> <strong>PC</strong>
+    </div>
+
+    <div id="placar">
+
+      <div id="jogada">
+        <span id="jogada-player">Player jogou</span> x <span id="jogada-pc"> PC jogou</span>
+      </div>
+
+      <div>Resultado do turno: <strong><span id="quemganha"></span></strong></div>
+
+      <div>
+          <strong>Turno:</strong> <span id="turnos">0</span>
+      </div>
+    </div>
+
+    <div id="regras">
+      <ul>
+        <li><h3>Regras</h3></li>
+        <li><span class="fa fa-hand-rock"></span> Pedra <strong>esmaga</strong> lagarto <span class="fa fa-hand-lizard"></span></li>
+        <li><span class="fa fa-hand-rock"></span> Pedra <strong>esmaga</strong> tesoura <span class="fa fa-hand-scissors"></span></li>
+        <li></li>
+        <li><span class="fa fa-hand-paper"></span> Papel <strong>reprova</strong> Spock <span class="fa fa-hand-spock"></span></li>
+        <li><span class="fa fa-hand-paper"></span> Papel <strong>envolve</strong> pedra <span class="fa fa-hand-rock"></span></li>
+        <li></li>
+        <li><span class="fa fa-hand-scissors"></span> Tesoura <strong>corta</strong> papel <span class="fa fa-hand-paper"></span></li>
+        <li><span class="fa fa-hand-scissors"></span> Tesoura <strong>decapita</strong> lagarto <span class="fa fa-hand-lizard"></span></li>
+        <li></li>
+        <li><span class="fa fa-hand-lizard"></span> Lagarto <strong>envenena</strong> Spock <span class="fa fa-hand-spock"></span></li>
+        <li><span class="fa fa-hand-lizard"></span> Lagarto <strong>come</strong> papel <span class="fa fa-hand-paper"></span></li>
+        <li></li>
+        <li><span class="fa fa-hand-spock"></span> Spock <strong>esmaga</strong> tesoura <span class="fa fa-hand-scissors"></span></li>
+        <li><span class="fa fa-hand-spock"></span> Spock <strong>vaporiza</strong> pedra <span class="fa fa-hand-rock"></span></li>
+    </ul>
+    </div>
+    </div>
+    <script>
+        "use strict";
+
+        var j = Jogo();
+        var $btn = document.getElementsByClassName("botao");
+
+        $btn[0].addEventListener("click", Click);
+        $btn[1].addEventListener("click", Click);
+        $btn[2].addEventListener("click", Click);
+        $btn[3].addEventListener("click", Click);
+        $btn[4].addEventListener("click", Click);
+
+        function Click(e) {
+            var JPl = e.target.attributes['data-indice'].value; // Player
+            var JPc = j.Random(); // PC
+
+            var qg = j.QuemGanha(JPl, JPc);
+
+            document.getElementById("quemganha").innerText = qg;
+
+            // Calcula o turno e score
+            j.IncrementaTurno();
+            j.IncrementaScore(qg);
+
+            // Mostrar score e turno
+            document.getElementById("turnos").innerText = j.turno;
+            document.getElementById("score-player").innerText = j.score.Player;
+            document.getElementById("score-pc").innerText = j.score.PC;
+
+            // Mostrar a jogada atual do player e do pc
+            var jogadaPlayer = document.getElementById("jogada-player");
+            var jogadaPC = document.getElementById("jogada-pc");
+
+            jogadaPlayer.innerHTML = 'Jogador <span class="fa '+ j.IconeCSS(JPl) +' "></span>';
+            jogadaPC.innerHTML = '<span class="fa '+ j.IconeCSS(JPc) +' "></span> PC';
+
+        }
+    </script>
+</body>
+</html>
